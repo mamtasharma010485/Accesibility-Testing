@@ -290,6 +290,14 @@ class AccessShopApp {
                 const p = PRODUCTS.find(p => p.id === parseInt(card.dataset.id));
                 if (p) this._openModal(p);
             });
+            // Enter/Space on article card — directly open modal (articles don't auto-fire click on Enter)
+            card.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const p = PRODUCTS.find(q => q.id === parseInt(card.dataset.id));
+                    if (p) this._openModal(p);
+                }
+            });
         });
         container.querySelectorAll('.wishlist-btn-card').forEach(btn => {
             btn.addEventListener('click', e => {
