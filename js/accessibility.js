@@ -301,10 +301,7 @@ class KeyboardNavigator {
             cards[next].setAttribute('tabindex', '0');
             cards[next].focus();
         }
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            e.currentTarget.click();
-        }
+        // Enter/Space are handled by app.js card keydown handlers
     }
 
     _colCount() {

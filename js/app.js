@@ -290,9 +290,19 @@ class AccessShopApp {
                 const p = PRODUCTS.find(p => p.id === parseInt(card.dataset.id));
                 if (p) this._openModal(p);
             });
-            // Enter/Space on article card — directly open modal (articles don't auto-fire click on Enter)
+            // Enter = quick-add to cart, Space = open modal details
             card.addEventListener('keydown', e => {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const p = PRODUCTS.find(q => q.id === parseInt(card.dataset.id));
+                    if (p) {
+                        this.cart.add(p, 1);
+                        // Visually signal which card was activated
+                        card.classList.add('card-activated');
+                        setTimeout(() => card.classList.remove('card-activated'), 600);
+                    }
+                }
+                if (e.key === ' ') {
                     e.preventDefault();
                     const p = PRODUCTS.find(q => q.id === parseInt(card.dataset.id));
                     if (p) this._openModal(p);
