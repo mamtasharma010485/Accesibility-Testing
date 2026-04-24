@@ -202,6 +202,7 @@ class AccessShopApp {
         this.cart = new CartManager(this.notifier, this.announcer);
         this.checkout = new CheckoutManager(this.notifier, this.announcer, () => this.cart);
         this.navigator = new KeyboardNavigator();
+        this.voice = new VoiceInputManager(this.notifier, this.announcer);
         this.wishlist = new Set();
 
         this._currentFilter = 'all';
@@ -215,6 +216,7 @@ class AccessShopApp {
         this._bindModal();
         this._bindKeyboardHelp();
         this._bindGlobalEscape();
+        this._bindVoiceInput();
 
         // Expose globals for keyboard shortcuts in accessibility.js
         window.closeAll = () => this._closeAll();
@@ -542,6 +544,31 @@ class AccessShopApp {
 
     _bindGlobalEscape() {
         document.addEventListener('keydown', e => { if (e.key === 'Escape') this._closeAll(); });
+    }
+
+    /* ── Voice Input Bindings ── */
+    _bindVoiceInput() {
+        if (!this.voice.supported) return;
+
+        // Per-field mic buttons
+        const fieldIds = ['first-name', 'last-name', 'email', 'phone', 'address', 'city', 'pincode'];
+        fieldIds.forEach(id => {
+            const btn = document.getElementById(`mic-btn-${id}`);
+            if (!btn) return;
+            btn.addEventListener('click', () => {
+                // If already listening to this field, stop; else start
+                if (this.voice._active === id) {
+                    this.voice.stop();
+                } else {
+                    this.voice.start(id);
+                }
+            });
+        });
+
+        // Guided fill-all button
+        document.getElementById('voice-fill-all-btn')?.addEventListener('click', () => {
+            this.voice.fillAll();
+        });
     }
 }
 

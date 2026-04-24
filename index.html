@@ -340,46 +340,124 @@
         <!-- Step 1: Delivery -->
         <div id="checkout-step-1" class="checkout-form-panel" role="form" aria-labelledby="delivery-heading">
           <h3 id="delivery-heading">Delivery Information</h3>
+
+          <!-- Voice Fill Banner -->
+          <div class="voice-fill-banner" role="note" aria-label="Voice input available — speak your delivery details">
+            <span class="voice-fill-icon" aria-hidden="true">🎙</span>
+            <div class="voice-fill-text">
+              <strong>Speak your details</strong>
+              <small>Click 🎙 next to any field, or let me guide you through all fields at once</small>
+            </div>
+            <button class="btn btn-voice-fill" id="voice-fill-all-btn"
+              aria-label="Fill all delivery fields by voice — I will prompt you for each field">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <path
+                  d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z" />
+              </svg>
+              Fill All by Voice
+            </button>
+          </div>
+
           <div class="form-grid">
             <div class="form-group">
               <label for="first-name">First Name <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="first-name" name="first-name" autocomplete="given-name" aria-required="true"
-                aria-describedby="first-name-error" />
+              <div class="voice-field-wrap">
+                <input type="text" id="first-name" name="first-name" autocomplete="given-name" aria-required="true"
+                  aria-describedby="first-name-error" />
+                <button class="mic-btn" id="mic-btn-first-name" aria-label="Speak your first name"
+                  title="Speak first name">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path
+                      d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z" />
+                  </svg>
+                </button>
+              </div>
               <span class="field-error" id="first-name-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group">
               <label for="last-name">Last Name <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="last-name" name="last-name" autocomplete="family-name" aria-required="true"
-                aria-describedby="last-name-error" />
+              <div class="voice-field-wrap">
+                <input type="text" id="last-name" name="last-name" autocomplete="family-name" aria-required="true"
+                  aria-describedby="last-name-error" />
+                <button class="mic-btn" id="mic-btn-last-name" aria-label="Speak your last name"
+                  title="Speak last name">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path
+                      d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z" />
+                  </svg>
+                </button>
+              </div>
               <span class="field-error" id="last-name-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group full">
               <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
-              <input type="email" id="email" name="email" autocomplete="email" aria-required="true"
-                aria-describedby="email-error" />
+              <div class="voice-field-wrap">
+                <input type="email" id="email" name="email" autocomplete="email" aria-required="true"
+                  aria-describedby="email-error" />
+                <button class="mic-btn" id="mic-btn-email" aria-label="Speak your email address" title="Speak email">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path
+                      d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z" />
+                  </svg>
+                </button>
+              </div>
               <span class="field-error" id="email-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group full">
               <label for="phone">Phone / WhatsApp Number</label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-hint" />
+              <div class="voice-field-wrap">
+                <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-hint" />
+                <button class="mic-btn" id="mic-btn-phone" aria-label="Speak your phone number"
+                  title="Speak phone number">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path
+                      d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z" />
+                  </svg>
+                </button>
+              </div>
               <span class="field-hint" id="phone-hint">Optional — for delivery updates via SMS/WhatsApp only</span>
             </div>
             <div class="form-group full">
               <label for="address">Street Address <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="address" name="address" autocomplete="street-address" aria-required="true"
-                aria-describedby="address-error" />
+              <div class="voice-field-wrap">
+                <input type="text" id="address" name="address" autocomplete="street-address" aria-required="true"
+                  aria-describedby="address-error" />
+                <button class="mic-btn" id="mic-btn-address" aria-label="Speak your street address"
+                  title="Speak address">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path
+                      d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z" />
+                  </svg>
+                </button>
+              </div>
               <span class="field-error" id="address-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group">
               <label for="city">City <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="city" name="city" autocomplete="address-level2" aria-required="true"
-                aria-describedby="city-error" />
+              <div class="voice-field-wrap">
+                <input type="text" id="city" name="city" autocomplete="address-level2" aria-required="true"
+                  aria-describedby="city-error" />
+                <button class="mic-btn" id="mic-btn-city" aria-label="Speak your city" title="Speak city">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path
+                      d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z" />
+                  </svg>
+                </button>
+              </div>
               <span class="field-error" id="city-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group">
               <label for="pincode">PIN Code <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="pincode" name="pincode" autocomplete="postal-code" inputmode="numeric"
-                pattern="[0-9]{6}" aria-required="true" aria-describedby="pincode-error pincode-hint" />
+              <div class="voice-field-wrap">
+                <input type="text" id="pincode" name="pincode" autocomplete="postal-code" inputmode="numeric"
+                  pattern="[0-9]{6}" aria-required="true" aria-describedby="pincode-error pincode-hint" />
+                <button class="mic-btn" id="mic-btn-pincode" aria-label="Speak your PIN code" title="Speak PIN code">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path
+                      d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z" />
+                  </svg>
+                </button>
+              </div>
               <span class="field-hint" id="pincode-hint">6-digit Indian PIN code</span>
               <span class="field-error" id="pincode-error" role="alert" aria-live="polite" hidden></span>
             </div>
@@ -394,6 +472,7 @@
             </button>
           </div>
         </div>
+
 
         <!-- Step 2: Payment -->
         <div id="checkout-step-2" class="checkout-form-panel" role="form" aria-labelledby="payment-heading" hidden>
@@ -690,6 +769,7 @@
   <script src="js/accessibility.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/checkout.js"></script>
+  <script src="js/voice.js"></script>
   <script src="js/app.js"></script>
 </body>
 
