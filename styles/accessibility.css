@@ -1,0 +1,630 @@
+/* ══════════════════════════════════════════════
+   AccessShop — Accessibility Overlay CSS
+   High Contrast | Motor Friendly | Font Scale
+   ══════════════════════════════════════════════ */
+
+/* ─── ACCESSIBILITY TOOLBAR ─── */
+.a11y-toolbar {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 850;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.a11y-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--clr-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 12px 20px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-md), 0 0 0 0 rgba(124, 58, 237, 0.4);
+    transition: box-shadow var(--transition), background var(--transition);
+    min-height: var(--min-target);
+    z-index: 2;
+}
+
+.a11y-toggle-btn:hover {
+    background: var(--clr-primary-dark);
+}
+
+.a11y-toggle-btn[aria-expanded="true"] {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+/* Pulse animation on toolbar button */
+.a11y-toggle-btn {
+    animation: a11yPulse 3s ease-in-out infinite;
+}
+
+.a11y-toggle-btn:hover,
+.a11y-toggle-btn:focus {
+    animation: none;
+}
+
+@keyframes a11yPulse {
+
+    0%,
+    100% {
+        box-shadow: var(--shadow-md), 0 0 0 0 rgba(124, 58, 237, 0.4);
+    }
+
+    50% {
+        box-shadow: var(--shadow-md), 0 0 0 12px rgba(124, 58, 237, 0);
+    }
+}
+
+.a11y-controls {
+    background: var(--clr-bg-card);
+    border: 2px solid var(--clr-primary);
+    border-top: none;
+    border-radius: 0 var(--radius-md) var(--radius-md) var(--radius-md);
+    padding: var(--space-lg);
+    width: 280px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.a11y-heading {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--clr-primary);
+    margin-bottom: -8px;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.a11y-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.a11y-group-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clr-text-muted);
+}
+
+.a11y-btn-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.a11y-opt-btn {
+    padding: 8px 14px;
+    border: 2px solid var(--clr-border);
+    border-radius: var(--radius-full);
+    background: none;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--clr-text-muted);
+    min-height: 40px;
+    min-width: 44px;
+    transition: all var(--transition);
+}
+
+.a11y-opt-btn:hover {
+    border-color: var(--clr-primary);
+    color: var(--clr-primary);
+}
+
+.a11y-opt-btn.active,
+.a11y-opt-btn[aria-pressed="true"] {
+    border-color: var(--clr-primary);
+    background: var(--clr-primary);
+    color: #fff;
+}
+
+/* Toggle Switch */
+.a11y-switch-label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--clr-text);
+}
+
+.a11y-switch-label small {
+    color: var(--clr-text-muted);
+    font-weight: 400;
+    font-size: 0.75rem;
+}
+
+.a11y-group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.a11y-switch {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: var(--clr-border);
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    padding: 0;
+    transition: background var(--transition);
+    flex-shrink: 0;
+}
+
+.a11y-switch[aria-checked="true"] {
+    background: var(--clr-primary);
+}
+
+.switch-thumb {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: transform var(--transition);
+    pointer-events: none;
+}
+
+.a11y-switch[aria-checked="true"] .switch-thumb {
+    transform: translateX(24px);
+}
+
+/* ─── SIGN LANGUAGE PANEL ─── */
+.sign-lang-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 300px;
+    background: var(--clr-bg-card);
+    border: 2px solid var(--clr-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 840;
+    overflow: hidden;
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.sign-lang-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+    color: #fff;
+}
+
+.sign-lang-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.sign-lang-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-lang-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+.sign-tip-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.sign-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.sign-tip-card.active-hint {
+    background: #EFF6FF;
+    border-color: #BFDBFE;
+    color: #1E40AF;
+    font-size: 0.75rem;
+    gap: 8px;
+}
+
+/* ─── HIGH CONTRAST MODE ─── */
+body.contrast-high {
+    --clr-bg: #000000;
+    --clr-bg-card: #111111;
+    --clr-bg-hover: #222222;
+    --clr-border: #FFFFFF;
+    --clr-text: #FFFFFF;
+    --clr-text-muted: #EEEEEE;
+    --clr-primary: #FFFF00;
+    --clr-primary-light: #FFFF77;
+    --clr-primary-dark: #CCCC00;
+    --clr-accent: #00FFFF;
+    --clr-success: #00FF00;
+    --clr-danger: #FF4444;
+    --clr-warning: #FFB800;
+    background: #000 !important;
+    color: #fff !important;
+}
+
+body.contrast-high .site-header {
+    background: #000;
+    border-color: #fff;
+}
+
+body.contrast-high .product-card {
+    border-color: #fff;
+}
+
+body.contrast-high .product-card:hover {
+    border-color: #ffff00;
+}
+
+body.contrast-high .btn-primary {
+    background: #ffff00;
+    color: #000;
+    border-color: #ffff00;
+}
+
+body.contrast-high .btn-primary:hover {
+    background: #cccc00;
+}
+
+body.contrast-high .skip-link {
+    background: #ffff00;
+    color: #000;
+}
+
+body.contrast-high a {
+    color: #00ffff;
+}
+
+body.contrast-high .logo-text {
+    color: #fff;
+}
+
+body.contrast-high .logo-accent {
+    color: #ffff00;
+}
+
+body.contrast-high .main-nav {
+    background: #111;
+    border-color: #fff;
+}
+
+body.contrast-high .nav-link {
+    color: #eeeeee;
+}
+
+body.contrast-high .nav-link.active {
+    color: #ffff00;
+}
+
+body.contrast-high .nav-link.active::after {
+    background: #ffff00;
+}
+
+body.contrast-high .chip.active {
+    background: #ffff00;
+    color: #000;
+    border-color: #ffff00;
+}
+
+body.contrast-high .filter-section {
+    background: #111;
+}
+
+body.contrast-high .search-box {
+    background: #111;
+    border-color: #fff;
+}
+
+body.contrast-high .search-input {
+    color: #fff;
+}
+
+body.contrast-high .toast {
+    background: #111;
+    border-color: #ffff00;
+}
+
+body.contrast-high .form-group input {
+    background: #111;
+    color: #fff;
+    border-color: #fff;
+}
+
+body.contrast-high .a11y-controls {
+    background: #111;
+}
+
+body.contrast-high kbd {
+    background: #222;
+    color: #fff;
+    border-color: #777;
+}
+
+/* ─── DARK MODE ─── */
+body.contrast-dark {
+    --clr-bg: #0F0F1A;
+    --clr-bg-card: #1A1A2E;
+    --clr-bg-hover: #232340;
+    --clr-border: #2D2D50;
+    --clr-text: #E8E8F0;
+    --clr-text-muted: #9999BB;
+    --clr-primary: #9F7AEA;
+    --clr-primary-light: #C4B5FD;
+    --clr-primary-dark: #7C3AED;
+}
+
+body.contrast-dark .site-header {
+    background: rgba(26, 26, 46, 0.95);
+}
+
+body.contrast-dark .main-nav {
+    background: #1A1A2E;
+}
+
+body.contrast-dark .pledge-section {
+    background: linear-gradient(135deg, #1A1A2E, #0F1F3F);
+}
+
+body.contrast-dark .search-box {
+    background: #0F0F1A;
+    border-color: #2D2D50;
+}
+
+body.contrast-dark .search-input {
+    color: #E8E8F0;
+}
+
+body.contrast-dark .form-group input {
+    background: #0F0F1A;
+    color: #E8E8F0;
+    border-color: #2D2D50;
+}
+
+body.contrast-dark .sort-select {
+    background: #1A1A2E;
+    color: #E8E8F0;
+    border-color: #2D2D50;
+}
+
+/* ─── FONT SIZE SCALE ─── */
+body.font-large {
+    font-size: 1.125rem;
+}
+
+body.font-xlarge {
+    font-size: 1.25rem;
+}
+
+body.font-large .product-name {
+    font-size: 1.15rem;
+}
+
+body.font-xlarge .product-name {
+    font-size: 1.3rem;
+}
+
+body.font-large .hero-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+body.font-xlarge .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* ─── MOTOR-FRIENDLY MODE ─── */
+body.motor-friendly {
+    --min-target: 64px;
+}
+
+body.motor-friendly .btn {
+    min-height: 64px;
+    padding: 1rem 2rem;
+    font-size: 1.05rem;
+}
+
+body.motor-friendly .nav-link {
+    min-height: 64px;
+    padding: 20px;
+    font-size: 1rem;
+}
+
+body.motor-friendly .chip {
+    min-height: 56px;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+}
+
+body.motor-friendly .qty-btn {
+    width: 48px;
+    height: 48px;
+}
+
+body.motor-friendly .qty-input {
+    width: 56px;
+    min-height: 48px;
+    font-size: 1rem;
+}
+
+body.motor-friendly .icon-btn {
+    width: 64px;
+    height: 64px;
+}
+
+body.motor-friendly .cart-close,
+body.motor-friendly .modal-close {
+    width: 64px;
+    height: 64px;
+}
+
+body.motor-friendly .form-group input {
+    min-height: 64px;
+    font-size: 1.05rem;
+    padding: 16px;
+}
+
+body.motor-friendly .a11y-toggle-btn {
+    min-height: 64px;
+    padding: 16px 24px;
+    font-size: 1rem;
+}
+
+body.motor-friendly .payment-option {
+    padding: 20px 24px;
+}
+
+body.motor-friendly .a11y-opt-btn {
+    min-height: 52px;
+    padding: 12px 18px;
+}
+
+body.motor-friendly .search-input {
+    min-height: 64px;
+}
+
+body.motor-friendly .product-actions .btn {
+    min-height: 56px;
+}
+
+body.motor-friendly .wishlist-btn-card {
+    width: 52px;
+    height: 52px;
+}
+
+/* ─── KEYBOARD-ONLY MODE (enhanced focus ring) ─── */
+body.keyboard-mode *:focus {
+    outline: 4px solid var(--clr-primary) !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 0 8px rgba(124, 58, 237, 0.2) !important;
+}
+
+body.keyboard-mode .product-card:focus-within {
+    outline: 4px solid var(--clr-primary);
+    outline-offset: 4px;
+    border-color: var(--clr-primary);
+}
+
+/* Visual indicator showing keyboard mode is on */
+body.keyboard-mode::after {
+    content: '⌨ Keyboard Mode Active';
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--clr-primary);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: var(--radius-full);
+    z-index: 9999;
+    letter-spacing: 0.03em;
+}
+
+/* ─── REDUCE MOTION MODE ─── */
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* ─── KEYBOARD FOCUS INDICATOR (always visible default) ─── */
+.product-card:focus {
+    outline: 3px solid var(--clr-primary);
+    outline-offset: 4px;
+    z-index: 1;
+}
+
+/* ─── VISUAL FLASH ALERT (for deaf users, instead of audio beep) ─── */
+@keyframes visualFlash {
+    0% {
+        background: transparent;
+    }
+
+    20% {
+        background: rgba(124, 58, 237, 0.1);
+    }
+
+    40% {
+        background: transparent;
+    }
+
+    60% {
+        background: rgba(124, 58, 237, 0.1);
+    }
+
+    80% {
+        background: transparent;
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+.visual-flash {
+    animation: visualFlash 0.6s ease;
+}
+
+/* ─── aXe legend: hidden from view, visible to screen reader ─── */
+[aria-live] {
+    outline: none !important;
+}

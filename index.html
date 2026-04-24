@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AccessShop — A fully accessible e-commerce store designed for deaf, mute, and motor-impaired shoppers. WCAG 2.1 AA compliant." />
+  <title>AccessShop — Inclusive E-Commerce</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/accessibility.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════
+       SKIP NAVIGATION LINKS
+       (appear on first Tab press)
+  ═══════════════════════════════ -->
+  <div class="skip-links" role="navigation" aria-label="Skip navigation">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#product-grid" class="skip-link">Skip to products</a>
+    <a href="#cart-drawer" class="skip-link">Skip to cart</a>
+    <a href="#site-footer" class="skip-link">Skip to footer</a>
+  </div>
+
+  <!-- ═══════════════════════════════
+       ARIA LIVE REGIONS  (screen reader announcements)
+  ═══════════════════════════════ -->
+  <div id="aria-live-polite"   aria-live="polite"   aria-atomic="true" class="sr-only" role="status"></div>
+  <div id="aria-live-assertive" aria-live="assertive" aria-atomic="true" class="sr-only" role="alert"></div>
+
+  <!-- ═══════════════════════════════
+       VISUAL NOTIFICATION TOAST AREA
+  ═══════════════════════════════ -->
+  <div id="toast-container" aria-live="polite" aria-label="Notifications" class="toast-container"></div>
+
+  <!-- ═══════════════════════════════
+       ACCESSIBILITY TOOLBAR
+  ═══════════════════════════════ -->
+  <aside id="accessibility-toolbar" class="a11y-toolbar" role="complementary" aria-label="Accessibility toolbar">
+    <button class="a11y-toggle-btn" id="a11y-panel-toggle" aria-expanded="false" aria-controls="a11y-controls" aria-label="Open accessibility settings">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm8.5 6.5h-5.1l-1.1 3.5 2.2 8h-2.2L12.5 14h-1l-1.8 6H7.5l2.2-8-1.1-3.5H3.5V6.5h17v2z"/></svg>
+      <span>Accessibility</span>
+    </button>
+
+    <div id="a11y-controls" class="a11y-controls" hidden>
+      <h2 class="a11y-heading">Accessibility Settings</h2>
+
+      <div class="a11y-group">
+        <span class="a11y-group-label" id="font-size-label">Font Size</span>
+        <div class="a11y-btn-group" role="group" aria-labelledby="font-size-label">
+          <button class="a11y-opt-btn active" id="font-normal" data-font="normal" aria-pressed="true">A</button>
+          <button class="a11y-opt-btn" id="font-large"  data-font="large"  aria-pressed="false">A+</button>
+          <button class="a11y-opt-btn" id="font-xlarge" data-font="xlarge" aria-pressed="false">A++</button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <span class="a11y-group-label" id="contrast-label">Contrast</span>
+        <div class="a11y-btn-group" role="group" aria-labelledby="contrast-label">
+          <button class="a11y-opt-btn active" id="contrast-normal" data-contrast="normal"  aria-pressed="true">Normal</button>
+          <button class="a11y-opt-btn" id="contrast-high"   data-contrast="high"    aria-pressed="false">High</button>
+          <button class="a11y-opt-btn" id="contrast-dark"   data-contrast="dark"    aria-pressed="false">Dark</button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <label class="a11y-switch-label" for="motor-mode-toggle">
+          <span>Motor-Friendly Mode</span>
+          <small>Enlarges all buttons &amp; links</small>
+        </label>
+        <button class="a11y-switch" id="motor-mode-toggle" role="switch" aria-checked="false">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+
+      <div class="a11y-group">
+        <label class="a11y-switch-label" for="reduce-motion-toggle">
+          <span>Reduce Motion</span>
+          <small>Disables non-essential animations</small>
+        </label>
+        <button class="a11y-switch" id="reduce-motion-toggle" role="switch" aria-checked="false">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+
+      <div class="a11y-group">
+        <label class="a11y-switch-label" for="keyboard-mode-toggle">
+          <span>Keyboard-Only Mode</span>
+          <small>Highlights all focusable elements</small>
+        </label>
+        <button class="a11y-switch" id="keyboard-mode-toggle" role="switch" aria-checked="false">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+
+      <div class="a11y-group">
+        <label class="a11y-switch-label" for="sign-lang-toggle">
+          <span>Sign Language Helper</span>
+          <small>Show ISL guide panel</small>
+        </label>
+        <button class="a11y-switch" id="sign-lang-toggle" role="switch" aria-checked="false">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════
+       SIGN LANGUAGE PANEL
+  ═══════════════════════════════ -->
+  <aside id="sign-lang-panel" class="sign-lang-panel" aria-label="Sign Language Guide" hidden>
+    <div class="sign-lang-header">
+      <h2 class="sign-lang-title">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21 7c0-1.1-.9-2-2-2h-1V3c0-1.1-.9-2-2-2s-2 .9-2 2v2h-2V3c0-1.1-.9-2-2-2S8 1.9 8 3v2H7C5.9 5 5 5.9 5 7v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7h2zm-4 0v14H7V7h10z"/></svg>
+        Sign Language Guide
+      </h2>
+      <button class="sign-lang-close" id="sign-lang-close" aria-label="Close sign language panel">✕</button>
+    </div>
+    <div class="sign-lang-body">
+      <div class="sign-tip-card">
+        <div class="sign-icon" aria-label="Welcome sign">👋</div>
+        <p><strong>Welcome</strong> — Wave hand side to side</p>
+      </div>
+      <div class="sign-tip-card">
+        <div class="sign-icon" aria-label="Add to cart sign">🛒</div>
+        <p><strong>Add to Cart</strong> — Mime placing item in basket</p>
+      </div>
+      <div class="sign-tip-card">
+        <div class="sign-icon" aria-label="Checkout sign">💳</div>
+        <p><strong>Checkout / Payment</strong> — Swipe palm across hand</p>
+      </div>
+      <div class="sign-tip-card">
+        <div class="sign-icon" aria-label="Search sign">🔍</div>
+        <p><strong>Search</strong> — Circle index finger forward</p>
+      </div>
+      <div class="sign-tip-card active-hint">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        All actions on this site are text-based — no voice required.
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════
+       SITE HEADER
+  ═══════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <!-- Logo -->
+      <a href="#main-content" class="logo" aria-label="AccessShop — Home">
+        <svg aria-hidden="true" viewBox="0 0 40 40" fill="none" width="40" height="40">
+          <circle cx="20" cy="20" r="20" fill="url(#logoGrad)"/>
+          <path d="M12 28l4-12h8l4 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="13" r="2" fill="#fff"/>
+          <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs>
+        </svg>
+        <span class="logo-text">Access<span class="logo-accent">Shop</span></span>
+      </a>
+
+      <!-- Search -->
+      <div class="search-wrapper" role="search">
+        <label for="site-search" class="sr-only">Search products</label>
+        <div class="search-box">
+          <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="search" id="site-search" class="search-input" placeholder="Search products…" aria-label="Search products" autocomplete="off" />
+          <button class="search-btn" id="search-btn" aria-label="Submit search">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div id="search-results-dropdown" class="search-dropdown" role="listbox" aria-label="Search suggestions" aria-expanded="false" hidden></div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button class="icon-btn" id="wishlist-btn" aria-label="Wishlist (0 items)">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="badge" id="wishlist-count" aria-hidden="true">0</span>
+        </button>
+        <button class="icon-btn" id="cart-btn" aria-label="Open shopping cart, 0 items" aria-controls="cart-drawer" aria-expanded="false">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="badge" id="cart-count" aria-hidden="true">0</span>
+        </button>
+        <a href="#checkout-section" class="btn btn-primary header-checkout-btn" id="header-checkout-btn">Checkout</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════
+       MAIN NAVIGATION
+  ═══════════════════════════════ -->
+  <nav class="main-nav" role="navigation" aria-label="Main menu">
+    <div class="nav-inner">
+      <ul class="nav-list" role="list">
+        <li><a href="#product-grid" class="nav-link active" aria-current="page">All Products</a></li>
+        <li><a href="#filter-section" class="nav-link">Adaptive Tech</a></li>
+        <li><a href="#filter-section" class="nav-link">Ergonomic</a></li>
+        <li><a href="#filter-section" class="nav-link">Communication</a></li>
+        <li><a href="#filter-section" class="nav-link">Daily Living</a></li>
+        <li><a href="#about-section" class="nav-link">About</a></li>
+      </ul>
+
+      <!-- Keyboard shortcut hints bar -->
+      <div class="keyboard-hints" aria-label="Keyboard shortcuts">
+        <span class="hint-label">⌨ Shortcuts:</span>
+        <kbd aria-label="Tab key">Tab</kbd><span>Navigate</span>
+        <kbd aria-label="Arrow keys">↑↓←→</kbd><span>Browse products</span>
+        <kbd aria-label="Enter key">Enter</kbd><span>Select</span>
+        <kbd aria-label="Escape key">Esc</kbd><span>Close</span>
+        <kbd aria-label="C key">C</kbd><span>Cart</span>
+        <kbd aria-label="Slash key">/</kbd><span>Search</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════ -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="hero-bg">
+        <img
+          src="C:/Users/mamta.sharma/.gemini/antigravity/brain/71fe94e8-6373-4ab5-9b45-c4c2c825e5bd/hero_banner_1777004366390.png"
+          alt="Diverse group of people including a wheelchair user shopping together, smiling and happy"
+          class="hero-img"
+          loading="eager"
+        />
+        <div class="hero-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge" aria-label="Certified accessible store — WCAG 2.1 AA">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2L3.5 6.5v5c0 5.55 3.84 10.74 8.5 12 4.66-1.26 8.5-6.45 8.5-12v-5L12 2zm-1 14l-4-4 1.41-1.41L11 13.17l6.59-6.59L19 8l-8 8z"/></svg>
+          WCAG 2.1 AA Certified
+        </div>
+        <h1 id="hero-heading" class="hero-title">
+          Shopping That Works<br /><em>For Everyone</em>
+        </h1>
+        <p class="hero-subtitle">
+          Fully accessible e-commerce for deaf, mute, and motor-impaired shoppers.<br />
+          Keyboard-first. Visual-first. No audio required.
+        </p>
+        <div class="hero-actions">
+          <a href="#product-grid" class="btn btn-hero-primary" aria-label="Shop now — jump to products">
+            Shop Now
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button class="btn btn-hero-secondary" id="hero-a11y-btn" aria-label="Open accessibility settings">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm8.5 6.5h-5.1l-1.1 3.5 2.2 8h-2.2L12.5 14h-1l-1.8 6H7.5l2.2-8-1.1-3.5H3.5V6.5h17v2z"/></svg>
+            Accessibility Settings
+          </button>
+        </div>
+        <div class="hero-disability-badges" aria-label="Accessibility features highlight">
+          <span class="disability-badge deaf-badge" title="Deaf-friendly: no audio dependency, visual alerts, sign language guide">
+            <span aria-hidden="true">🤟</span> Deaf-Friendly
+          </span>
+          <span class="disability-badge mute-badge" title="Mute-friendly: no voice input required, all text-based">
+            <span aria-hidden="true">💬</span> No Voice Required
+          </span>
+          <span class="disability-badge motor-badge" title="Motor-friendly: keyboard navigation, large targets, no time limits">
+            <span aria-hidden="true">⌨️</span> Keyboard-First
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTER / SORT SECTION -->
+    <section id="filter-section" class="filter-section" aria-labelledby="filter-heading">
+      <div class="container">
+        <h2 id="filter-heading" class="sr-only">Filter and sort products</h2>
+        <div class="filter-bar">
+          <div class="filter-chips" role="group" aria-label="Filter by category">
+            <button class="chip active" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" data-filter="adaptive-tech" aria-pressed="false">Adaptive Tech</button>
+            <button class="chip" data-filter="ergonomic" aria-pressed="false">Ergonomic</button>
+            <button class="chip" data-filter="communication" aria-pressed="false">Communication</button>
+            <button class="chip" data-filter="daily-living" aria-pressed="false">Daily Living</button>
+          </div>
+          <div class="sort-wrapper">
+            <label for="sort-select" class="sort-label">Sort by:</label>
+            <select id="sort-select" class="sort-select" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+        </div>
+        <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true">Showing <strong>8</strong> products</p>
+      </div>
+    </section>
+
+    <!-- PRODUCT GRID -->
+    <section id="product-grid" class="product-section" aria-labelledby="products-heading">
+      <div class="container">
+        <h2 id="products-heading" class="section-heading">Our Products</h2>
+        <div class="product-grid" id="products-container" role="list" aria-label="Product list">
+          <!-- JS-rendered product cards go here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / ACCESSIBILITY PLEDGE -->
+    <section id="about-section" class="pledge-section" aria-labelledby="pledge-heading">
+      <div class="container">
+        <h2 id="pledge-heading" class="section-heading centered">Our Accessibility Pledge</h2>
+        <div class="pledge-grid">
+          <div class="pledge-card" tabindex="0">
+            <div class="pledge-icon" aria-hidden="true">🤟</div>
+            <h3>For Deaf Users</h3>
+            <ul class="pledge-list">
+              <li>Zero audio-only alerts — 100% visual</li>
+              <li>Sign language guide widget (ISL)</li>
+              <li>Captions on all video content</li>
+              <li>Flashing visual notifications</li>
+            </ul>
+          </div>
+          <div class="pledge-card" tabindex="0">
+            <div class="pledge-icon" aria-hidden="true">💬</div>
+            <h3>For Mute / Non-Verbal Users</h3>
+            <ul class="pledge-list">
+              <li>No voice input required — ever</li>
+              <li>Text-based search and navigation</li>
+              <li>AAC-friendly product descriptions</li>
+              <li>Chat support via text</li>
+            </ul>
+          </div>
+          <div class="pledge-card" tabindex="0">
+            <div class="pledge-icon" aria-hidden="true">⌨️</div>
+            <h3>For Motor-Impaired Users</h3>
+            <ul class="pledge-list">
+              <li>Full keyboard-only operation</li>
+              <li>48px+ click/tap targets</li>
+              <li>Motor-friendly oversized mode</li>
+              <li>No time-limited interactions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECKOUT SECTION -->
+    <section id="checkout-section" class="checkout-section" aria-labelledby="checkout-heading" hidden>
+      <div class="container">
+        <h2 id="checkout-heading" class="section-heading">Secure Checkout</h2>
+
+        <!-- Progress Steps -->
+        <nav class="checkout-steps" aria-label="Checkout progress">
+          <ol class="steps-list">
+            <li class="step active" id="step-indicator-1" aria-current="step">
+              <span class="step-num" aria-hidden="true">1</span>
+              <span class="step-label">Delivery</span>
+            </li>
+            <li class="step" id="step-indicator-2">
+              <span class="step-num" aria-hidden="true">2</span>
+              <span class="step-label">Payment</span>
+            </li>
+            <li class="step" id="step-indicator-3">
+              <span class="step-num" aria-hidden="true">3</span>
+              <span class="step-label">Confirm</span>
+            </li>
+          </ol>
+        </nav>
+
+        <!-- Step 1: Delivery -->
+        <div id="checkout-step-1" class="checkout-form-panel" role="form" aria-labelledby="delivery-heading">
+          <h3 id="delivery-heading">Delivery Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="first-name">First Name <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="first-name" name="first-name" autocomplete="given-name"
+                     aria-required="true" aria-describedby="first-name-error" />
+              <span class="field-error" id="first-name-error" role="alert" aria-live="polite" hidden></span>
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="last-name" name="last-name" autocomplete="family-name"
+                     aria-required="true" aria-describedby="last-name-error" />
+              <span class="field-error" id="last-name-error" role="alert" aria-live="polite" hidden></span>
+            </div>
+            <div class="form-group full">
+              <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email"
+                     aria-required="true" aria-describedby="email-error" />
+              <span class="field-error" id="email-error" role="alert" aria-live="polite" hidden></span>
+            </div>
+            <div class="form-group full">
+              <label for="phone">Phone / WhatsApp Number</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-hint" />
+              <span class="field-hint" id="phone-hint">Optional — for delivery updates via SMS/WhatsApp only</span>
+            </div>
+            <div class="form-group full">
+              <label for="address">Street Address <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="address" name="address" autocomplete="street-address"
+                     aria-required="true" aria-describedby="address-error" />
+              <span class="field-error" id="address-error" role="alert" aria-live="polite" hidden></span>
+            </div>
+            <div class="form-group">
+              <label for="city">City <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="city" name="city" autocomplete="address-level2"
+                     aria-required="true" aria-describedby="city-error" />
+              <span class="field-error" id="city-error" role="alert" aria-live="polite" hidden></span>
+            </div>
+            <div class="form-group">
+              <label for="pincode">PIN Code <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="pincode" name="pincode" autocomplete="postal-code"
+                     inputmode="numeric" pattern="[0-9]{6}"
+                     aria-required="true" aria-describedby="pincode-error pincode-hint" />
+              <span class="field-hint" id="pincode-hint">6-digit Indian PIN code</span>
+              <span class="field-error" id="pincode-error" role="alert" aria-live="polite" hidden></span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" id="step1-next" type="button">
+              Continue to Payment
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Payment -->
+        <div id="checkout-step-2" class="checkout-form-panel" role="form" aria-labelledby="payment-heading" hidden>
+          <h3 id="payment-heading">Payment Method</h3>
+          <fieldset class="payment-options">
+            <legend>Choose a payment method</legend>
+            <label class="payment-option" for="pay-upi">
+              <input type="radio" id="pay-upi" name="payment" value="upi" aria-describedby="pay-upi-desc" checked />
+              <span class="payment-icon">📱</span>
+              <span>
+                <strong>UPI / PhonePe / GPay</strong>
+                <small id="pay-upi-desc">Instant payment via UPI apps</small>
+              </span>
+            </label>
+            <label class="payment-option" for="pay-card">
+              <input type="radio" id="pay-card" name="payment" value="card" aria-describedby="pay-card-desc" />
+              <span class="payment-icon">💳</span>
+              <span>
+                <strong>Credit / Debit Card</strong>
+                <small id="pay-card-desc">Visa, Mastercard, RuPay</small>
+              </span>
+            </label>
+            <label class="payment-option" for="pay-cod">
+              <input type="radio" id="pay-cod" name="payment" value="cod" aria-describedby="pay-cod-desc" />
+              <span class="payment-icon">💵</span>
+              <span>
+                <strong>Cash on Delivery</strong>
+                <small id="pay-cod-desc">Pay when your order arrives</small>
+              </span>
+            </label>
+          </fieldset>
+          <div class="form-actions">
+            <button class="btn btn-outline" id="step2-back" type="button">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              Back
+            </button>
+            <button class="btn btn-primary" id="step2-next" type="button">
+              Review Order
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Confirm -->
+        <div id="checkout-step-3" class="checkout-form-panel" role="region" aria-labelledby="confirm-heading" hidden>
+          <h3 id="confirm-heading">Order Summary</h3>
+          <div id="order-summary" class="order-summary" aria-label="Order summary"></div>
+          <div class="form-actions">
+            <button class="btn btn-outline" id="step3-back" type="button">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              Back
+            </button>
+            <button class="btn btn-success" id="place-order-btn" type="button">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Place Order
+            </button>
+          </div>
+        </div>
+
+        <!-- Order Success -->
+        <div id="order-success" class="order-success" role="alert" aria-live="assertive" hidden>
+          <div class="success-icon" aria-hidden="true">✅</div>
+          <h3>Order Placed Successfully!</h3>
+          <p>Thank you for shopping with AccessShop. A confirmation has been sent to your email.</p>
+          <p class="order-number" id="order-number"></p>
+          <button class="btn btn-primary" id="continue-shopping-btn">Continue Shopping</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════
+       CART DRAWER
+  ═══════════════════════════════ -->
+  <div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-heading" aria-hidden="true">
+    <div class="cart-header">
+      <h2 id="cart-heading">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/></svg>
+        Your Cart
+      </h2>
+      <button class="cart-close" id="cart-close" aria-label="Close cart">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="cart-items" class="cart-items" role="list" aria-label="Cart items">
+      <!-- JS rendered -->
+    </div>
+    <div class="cart-empty" id="cart-empty" aria-live="polite">
+      <div class="cart-empty-icon" aria-hidden="true">🛒</div>
+      <p>Your cart is empty</p>
+      <button class="btn btn-outline" id="cart-start-shopping">Start Shopping</button>
+    </div>
+    <div class="cart-footer" id="cart-footer" hidden>
+      <div class="cart-total" aria-live="polite">
+        <span>Total:</span>
+        <strong id="cart-total-price" aria-label="Cart total">₹0</strong>
+      </div>
+      <a href="#checkout-section" class="btn btn-primary full-width" id="cart-checkout-btn" role="button">
+        Proceed to Checkout
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════
+       PRODUCT QUICK-VIEW MODAL
+  ═══════════════════════════════ -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true"></div>
+  <div id="product-modal" class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-title" aria-hidden="true">
+    <button class="modal-close" id="modal-close" aria-label="Close product details">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-body">
+      <div class="modal-img-wrap">
+        <img id="modal-product-img" src="" alt="" class="modal-product-img" />
+      </div>
+      <div class="modal-details">
+        <div class="modal-badge" id="modal-product-category"></div>
+        <h2 id="modal-product-title" class="modal-title"></h2>
+        <div class="modal-rating" id="modal-product-rating" aria-label="Rating"></div>
+        <p class="modal-description" id="modal-product-desc"></p>
+        <div class="modal-price" id="modal-product-price" aria-label="Price"></div>
+        <div class="modal-features" id="modal-product-features"></div>
+        <div class="modal-actions">
+          <div class="qty-control" role="group" aria-label="Quantity selector">
+            <button class="qty-btn" id="modal-qty-dec" aria-label="Decrease quantity">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14"/></svg>
+            </button>
+            <input type="number" id="modal-qty" class="qty-input" value="1" min="1" max="99" aria-label="Quantity" />
+            <button class="qty-btn" id="modal-qty-inc" aria-label="Increase quantity">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+          <button class="btn btn-primary" id="modal-add-cart">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer id="site-footer" class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <svg aria-hidden="true" viewBox="0 0 40 40" fill="none" width="36" height="36"><circle cx="20" cy="20" r="20" fill="url(#logoGrad2)"/><path d="M12 28l4-12h8l4 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="13" r="2" fill="#fff"/><defs><linearGradient id="logoGrad2" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs></svg>
+            <span class="logo-text">Access<span class="logo-accent">Shop</span></span>
+          </div>
+          <p class="footer-tagline">Shopping without barriers.</p>
+          <p class="footer-cert">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2L3.5 6.5v5c0 5.55 3.84 10.74 8.5 12 4.66-1.26 8.5-6.45 8.5-12v-5L12 2zm-1 14l-4-4 1.41-1.41L11 13.17l6.59-6.59L19 8l-8 8z"/></svg>
+            WCAG 2.1 AA Compliant
+          </p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#product-grid">Products</a></li>
+            <li><a href="#about-section">About</a></li>
+            <li><a href="#checkout-section">Checkout</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Accessibility</h3>
+          <ul>
+            <li><a href="#accessibility-toolbar">Settings</a></li>
+            <li><a href="#" id="footer-keyboard-help">Keyboard Shortcuts</a></li>
+            <li><a href="#" id="footer-sign-lang">Sign Language Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="mailto:support@accessshop.in">Email Support</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AccessShop. Built with ♿ for everyone.</p>
+        <p class="footer-wcag">
+          <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer" aria-label="WCAG 2.1 Guidelines (opens in new tab)">WCAG 2.1 Guidelines ↗</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Keyboard Shortcut Help Modal -->
+  <div id="keyboard-help-modal" class="product-modal keyboard-help-modal" role="dialog" aria-modal="true" aria-labelledby="kb-modal-title" aria-hidden="true">
+    <button class="modal-close" id="kb-modal-close" aria-label="Close keyboard shortcuts">✕</button>
+    <div class="kb-modal-body">
+      <h2 id="kb-modal-title">⌨️ Keyboard Shortcuts</h2>
+      <table class="shortcuts-table" aria-label="Keyboard shortcuts reference">
+        <thead><tr><th scope="col">Key</th><th scope="col">Action</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>Tab</kbd> / <kbd>Shift+Tab</kbd></td><td>Move between interactive elements</td></tr>
+          <tr><td><kbd>↑ ↓ ← →</kbd></td><td>Navigate the product grid</td></tr>
+          <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Activate focused element</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>Close modals, cart, dropdowns</td></tr>
+          <tr><td><kbd>/</kbd></td><td>Focus search box</td></tr>
+          <tr><td><kbd>C</kbd></td><td>Open / close cart</td></tr>
+          <tr><td><kbd>A</kbd></td><td>Open accessibility settings</td></tr>
+          <tr><td><kbd>?</kbd></td><td>This shortcuts help</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="js/accessibility.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
