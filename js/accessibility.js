@@ -100,14 +100,13 @@ class AccessibilityToolbar {
     }
 
     _defaultPrefs() {
-        return { font: 'normal', contrast: 'normal', motor: false, reduceMotion: false, keyboard: false, signLang: false };
+        // Motor-Friendly, Reduce Motion, Keyboard Mode, Sign Language are permanently ON
+        return { font: 'normal', contrast: 'normal', motor: true, reduceMotion: true, keyboard: true, signLang: true };
     }
 
     _loadPrefs() {
-        try {
-            const saved = localStorage.getItem('accessshop_a11y');
-            return saved ? { ...this._defaultPrefs(), ...JSON.parse(saved) } : this._defaultPrefs();
-        } catch { return this._defaultPrefs(); }
+        // Always start from defaults (toolbar removed — modes are always active)
+        return this._defaultPrefs();
     }
 
     _savePrefs() {
@@ -331,18 +330,8 @@ class KeyboardNavigator {
             if (e.key === 'c' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
                 window.toggleCart?.();
             }
-            // 'a' opens accessibility panel
-            if (e.key === 'a' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-                const controls = document.getElementById('a11y-controls');
-                const toggleBtn = document.getElementById('a11y-panel-toggle');
-                if (controls?.hasAttribute('hidden')) {
-                    controls.removeAttribute('hidden');
-                    toggleBtn?.setAttribute('aria-expanded', 'true');
-                } else {
-                    controls?.setAttribute('hidden', '');
-                    toggleBtn?.setAttribute('aria-expanded', 'false');
-                }
-            }
+            // 'a' key — toolbar removed, no-op
+            if (e.key === 'a') { /* toolbar removed */ }
             // '?' shows keyboard help
             if (e.key === '?') window.openKeyboardHelp?.();
             // Escape closes modals / drawers

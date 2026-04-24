@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AccessShop — A fully accessible e-commerce store designed for deaf, mute, and motor-impaired shoppers. WCAG 2.1 AA compliant." />
+  <meta name="description"
+    content="AccessShop — A fully accessible e-commerce store designed for deaf, mute, and motor-impaired shoppers. WCAG 2.1 AA compliant." />
   <title>AccessShop — Inclusive E-Commerce</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
+    rel="stylesheet" />
 
   <link rel="stylesheet" href="styles/main.css" />
   <link rel="stylesheet" href="styles/accessibility.css" />
 </head>
+
 <body>
 
   <!-- ═══════════════════════════════
@@ -30,7 +35,7 @@
   <!-- ═══════════════════════════════
        ARIA LIVE REGIONS  (screen reader announcements)
   ═══════════════════════════════ -->
-  <div id="aria-live-polite"   aria-live="polite"   aria-atomic="true" class="sr-only" role="status"></div>
+  <div id="aria-live-polite" aria-live="polite" aria-atomic="true" class="sr-only" role="status"></div>
   <div id="aria-live-assertive" aria-live="assertive" aria-atomic="true" class="sr-only" role="alert"></div>
 
   <!-- ═══════════════════════════════
@@ -38,77 +43,7 @@
   ═══════════════════════════════ -->
   <div id="toast-container" aria-live="polite" aria-label="Notifications" class="toast-container"></div>
 
-  <!-- ═══════════════════════════════
-       ACCESSIBILITY TOOLBAR
-  ═══════════════════════════════ -->
-  <aside id="accessibility-toolbar" class="a11y-toolbar" role="complementary" aria-label="Accessibility toolbar">
-    <button class="a11y-toggle-btn" id="a11y-panel-toggle" aria-expanded="false" aria-controls="a11y-controls" aria-label="Open accessibility settings">
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm8.5 6.5h-5.1l-1.1 3.5 2.2 8h-2.2L12.5 14h-1l-1.8 6H7.5l2.2-8-1.1-3.5H3.5V6.5h17v2z"/></svg>
-      <span>Accessibility</span>
-    </button>
-
-    <div id="a11y-controls" class="a11y-controls" hidden>
-      <h2 class="a11y-heading">Accessibility Settings</h2>
-
-      <div class="a11y-group">
-        <span class="a11y-group-label" id="font-size-label">Font Size</span>
-        <div class="a11y-btn-group" role="group" aria-labelledby="font-size-label">
-          <button class="a11y-opt-btn active" id="font-normal" data-font="normal" aria-pressed="true">A</button>
-          <button class="a11y-opt-btn" id="font-large"  data-font="large"  aria-pressed="false">A+</button>
-          <button class="a11y-opt-btn" id="font-xlarge" data-font="xlarge" aria-pressed="false">A++</button>
-        </div>
-      </div>
-
-      <div class="a11y-group">
-        <span class="a11y-group-label" id="contrast-label">Contrast</span>
-        <div class="a11y-btn-group" role="group" aria-labelledby="contrast-label">
-          <button class="a11y-opt-btn active" id="contrast-normal" data-contrast="normal"  aria-pressed="true">Normal</button>
-          <button class="a11y-opt-btn" id="contrast-high"   data-contrast="high"    aria-pressed="false">High</button>
-          <button class="a11y-opt-btn" id="contrast-dark"   data-contrast="dark"    aria-pressed="false">Dark</button>
-        </div>
-      </div>
-
-      <div class="a11y-group">
-        <label class="a11y-switch-label" for="motor-mode-toggle">
-          <span>Motor-Friendly Mode</span>
-          <small>Enlarges all buttons &amp; links</small>
-        </label>
-        <button class="a11y-switch" id="motor-mode-toggle" role="switch" aria-checked="false">
-          <span class="switch-thumb"></span>
-        </button>
-      </div>
-
-      <div class="a11y-group">
-        <label class="a11y-switch-label" for="reduce-motion-toggle">
-          <span>Reduce Motion</span>
-          <small>Disables non-essential animations</small>
-        </label>
-        <button class="a11y-switch" id="reduce-motion-toggle" role="switch" aria-checked="false">
-          <span class="switch-thumb"></span>
-        </button>
-      </div>
-
-      <div class="a11y-group">
-        <label class="a11y-switch-label" for="keyboard-mode-toggle">
-          <span>Keyboard-Only Mode</span>
-          <small>Highlights all focusable elements</small>
-        </label>
-        <button class="a11y-switch" id="keyboard-mode-toggle" role="switch" aria-checked="false">
-          <span class="switch-thumb"></span>
-        </button>
-      </div>
-
-      <div class="a11y-group">
-        <label class="a11y-switch-label" for="sign-lang-toggle">
-          <span>Sign Language Helper</span>
-          <small>Show ISL guide panel</small>
-        </label>
-        <button class="a11y-switch" id="sign-lang-toggle" role="switch" aria-checked="false">
-          <span class="switch-thumb"></span>
-        </button>
-      </div>
-    </div>
-  </aside>
+  <!-- Accessibility modes are permanently active: Motor-Friendly, Reduce Motion, Keyboard-Mode, Sign Language -->
 
   <!-- ═══════════════════════════════
        SIGN LANGUAGE PANEL
@@ -116,7 +51,10 @@
   <aside id="sign-lang-panel" class="sign-lang-panel" aria-label="Sign Language Guide" hidden>
     <div class="sign-lang-header">
       <h2 class="sign-lang-title">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21 7c0-1.1-.9-2-2-2h-1V3c0-1.1-.9-2-2-2s-2 .9-2 2v2h-2V3c0-1.1-.9-2-2-2S8 1.9 8 3v2H7C5.9 5 5 5.9 5 7v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7h2zm-4 0v14H7V7h10z"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+          <path
+            d="M21 7c0-1.1-.9-2-2-2h-1V3c0-1.1-.9-2-2-2s-2 .9-2 2v2h-2V3c0-1.1-.9-2-2-2S8 1.9 8 3v2H7C5.9 5 5 5.9 5 7v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7h2zm-4 0v14H7V7h10z" />
+        </svg>
         Sign Language Guide
       </h2>
       <button class="sign-lang-close" id="sign-lang-close" aria-label="Close sign language panel">✕</button>
@@ -139,7 +77,9 @@
         <p><strong>Search</strong> — Circle index finger forward</p>
       </div>
       <div class="sign-tip-card active-hint">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+        </svg>
         All actions on this site are text-based — no voice required.
       </div>
     </div>
@@ -153,10 +93,16 @@
       <!-- Logo -->
       <a href="#main-content" class="logo" aria-label="AccessShop — Home">
         <svg aria-hidden="true" viewBox="0 0 40 40" fill="none" width="40" height="40">
-          <circle cx="20" cy="20" r="20" fill="url(#logoGrad)"/>
-          <path d="M12 28l4-12h8l4 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="20" cy="13" r="2" fill="#fff"/>
-          <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs>
+          <circle cx="20" cy="20" r="20" fill="url(#logoGrad)" />
+          <path d="M12 28l4-12h8l4 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <circle cx="20" cy="13" r="2" fill="#fff" />
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#7C3AED" />
+              <stop offset="1" stop-color="#06B6D4" />
+            </linearGradient>
+          </defs>
         </svg>
         <span class="logo-text">Access<span class="logo-accent">Shop</span></span>
       </a>
@@ -165,23 +111,42 @@
       <div class="search-wrapper" role="search">
         <label for="site-search" class="sr-only">Search products</label>
         <div class="search-box">
-          <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="search" id="site-search" class="search-input" placeholder="Search products…" aria-label="Search products" autocomplete="off" />
+          <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" width="18" height="18">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          <input type="search" id="site-search" class="search-input" placeholder="Search products…"
+            aria-label="Search products" autocomplete="off" />
           <button class="search-btn" id="search-btn" aria-label="Submit search">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16"
+              height="16">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </button>
         </div>
-        <div id="search-results-dropdown" class="search-dropdown" role="listbox" aria-label="Search suggestions" aria-expanded="false" hidden></div>
+        <div id="search-results-dropdown" class="search-dropdown" role="listbox" aria-label="Search suggestions"
+          aria-expanded="false" hidden></div>
       </div>
 
       <!-- Header Actions -->
       <div class="header-actions">
         <button class="icon-btn" id="wishlist-btn" aria-label="Wishlist (0 items)">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+            height="22">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
           <span class="badge" id="wishlist-count" aria-hidden="true">0</span>
         </button>
-        <button class="icon-btn" id="cart-btn" aria-label="Open shopping cart, 0 items" aria-controls="cart-drawer" aria-expanded="false">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <button class="icon-btn" id="cart-btn" aria-label="Open shopping cart, 0 items" aria-controls="cart-drawer"
+          aria-expanded="false">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+            height="22">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
           <span class="badge" id="cart-count" aria-hidden="true">0</span>
         </button>
         <a href="#checkout-section" class="btn btn-primary header-checkout-btn" id="header-checkout-btn">Checkout</a>
@@ -227,14 +192,15 @@
         <img
           src="C:/Users/mamta.sharma/.gemini/antigravity/brain/71fe94e8-6373-4ab5-9b45-c4c2c825e5bd/hero_banner_1777004366390.png"
           alt="Diverse group of people including a wheelchair user shopping together, smiling and happy"
-          class="hero-img"
-          loading="eager"
-        />
+          class="hero-img" loading="eager" />
         <div class="hero-overlay" aria-hidden="true"></div>
       </div>
       <div class="hero-content">
         <div class="hero-badge" aria-label="Certified accessible store — WCAG 2.1 AA">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2L3.5 6.5v5c0 5.55 3.84 10.74 8.5 12 4.66-1.26 8.5-6.45 8.5-12v-5L12 2zm-1 14l-4-4 1.41-1.41L11 13.17l6.59-6.59L19 8l-8 8z"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path
+              d="M12 2L3.5 6.5v5c0 5.55 3.84 10.74 8.5 12 4.66-1.26 8.5-6.45 8.5-12v-5L12 2zm-1 14l-4-4 1.41-1.41L11 13.17l6.59-6.59L19 8l-8 8z" />
+          </svg>
           WCAG 2.1 AA Certified
         </div>
         <h1 id="hero-heading" class="hero-title">
@@ -247,21 +213,23 @@
         <div class="hero-actions">
           <a href="#product-grid" class="btn btn-hero-primary" aria-label="Shop now — jump to products">
             Shop Now
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18"
+              height="18">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </a>
-          <button class="btn btn-hero-secondary" id="hero-a11y-btn" aria-label="Open accessibility settings">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm8.5 6.5h-5.1l-1.1 3.5 2.2 8h-2.2L12.5 14h-1l-1.8 6H7.5l2.2-8-1.1-3.5H3.5V6.5h17v2z"/></svg>
-            Accessibility Settings
-          </button>
+
         </div>
         <div class="hero-disability-badges" aria-label="Accessibility features highlight">
-          <span class="disability-badge deaf-badge" title="Deaf-friendly: no audio dependency, visual alerts, sign language guide">
+          <span class="disability-badge deaf-badge"
+            title="Deaf-friendly: no audio dependency, visual alerts, sign language guide">
             <span aria-hidden="true">🤟</span> Deaf-Friendly
           </span>
           <span class="disability-badge mute-badge" title="Mute-friendly: no voice input required, all text-based">
             <span aria-hidden="true">💬</span> No Voice Required
           </span>
-          <span class="disability-badge motor-badge" title="Motor-friendly: keyboard navigation, large targets, no time limits">
+          <span class="disability-badge motor-badge"
+            title="Motor-friendly: keyboard navigation, large targets, no time limits">
             <span aria-hidden="true">⌨️</span> Keyboard-First
           </span>
         </div>
@@ -291,7 +259,8 @@
             </select>
           </div>
         </div>
-        <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true">Showing <strong>8</strong> products</p>
+        <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true">Showing <strong>8</strong>
+          products</p>
       </div>
     </section>
 
@@ -373,20 +342,20 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="first-name">First Name <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="first-name" name="first-name" autocomplete="given-name"
-                     aria-required="true" aria-describedby="first-name-error" />
+              <input type="text" id="first-name" name="first-name" autocomplete="given-name" aria-required="true"
+                aria-describedby="first-name-error" />
               <span class="field-error" id="first-name-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group">
               <label for="last-name">Last Name <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="last-name" name="last-name" autocomplete="family-name"
-                     aria-required="true" aria-describedby="last-name-error" />
+              <input type="text" id="last-name" name="last-name" autocomplete="family-name" aria-required="true"
+                aria-describedby="last-name-error" />
               <span class="field-error" id="last-name-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group full">
               <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
-              <input type="email" id="email" name="email" autocomplete="email"
-                     aria-required="true" aria-describedby="email-error" />
+              <input type="email" id="email" name="email" autocomplete="email" aria-required="true"
+                aria-describedby="email-error" />
               <span class="field-error" id="email-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group full">
@@ -396,21 +365,20 @@
             </div>
             <div class="form-group full">
               <label for="address">Street Address <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="address" name="address" autocomplete="street-address"
-                     aria-required="true" aria-describedby="address-error" />
+              <input type="text" id="address" name="address" autocomplete="street-address" aria-required="true"
+                aria-describedby="address-error" />
               <span class="field-error" id="address-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group">
               <label for="city">City <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="city" name="city" autocomplete="address-level2"
-                     aria-required="true" aria-describedby="city-error" />
+              <input type="text" id="city" name="city" autocomplete="address-level2" aria-required="true"
+                aria-describedby="city-error" />
               <span class="field-error" id="city-error" role="alert" aria-live="polite" hidden></span>
             </div>
             <div class="form-group">
               <label for="pincode">PIN Code <span class="required" aria-label="required">*</span></label>
-              <input type="text" id="pincode" name="pincode" autocomplete="postal-code"
-                     inputmode="numeric" pattern="[0-9]{6}"
-                     aria-required="true" aria-describedby="pincode-error pincode-hint" />
+              <input type="text" id="pincode" name="pincode" autocomplete="postal-code" inputmode="numeric"
+                pattern="[0-9]{6}" aria-required="true" aria-describedby="pincode-error pincode-hint" />
               <span class="field-hint" id="pincode-hint">6-digit Indian PIN code</span>
               <span class="field-error" id="pincode-error" role="alert" aria-live="polite" hidden></span>
             </div>
@@ -418,7 +386,10 @@
           <div class="form-actions">
             <button class="btn btn-primary" id="step1-next" type="button">
               Continue to Payment
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                width="16" height="16">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
@@ -455,12 +426,18 @@
           </fieldset>
           <div class="form-actions">
             <button class="btn btn-outline" id="step2-back" type="button">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                width="16" height="16">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
               Back
             </button>
             <button class="btn btn-primary" id="step2-next" type="button">
               Review Order
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                width="16" height="16">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
@@ -471,11 +448,16 @@
           <div id="order-summary" class="order-summary" aria-label="Order summary"></div>
           <div class="form-actions">
             <button class="btn btn-outline" id="step3-back" type="button">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                width="16" height="16">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
               Back
             </button>
             <button class="btn btn-success" id="place-order-btn" type="button">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+              </svg>
               Place Order
             </button>
           </div>
@@ -498,14 +480,21 @@
        CART DRAWER
   ═══════════════════════════════ -->
   <div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
-  <aside id="cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-heading" aria-hidden="true">
+  <aside id="cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-heading"
+    aria-hidden="true">
     <div class="cart-header">
       <h2 id="cart-heading">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20"
+          height="20">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+        </svg>
         Your Cart
       </h2>
       <button class="cart-close" id="cart-close" aria-label="Close cart">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20"
+          height="20">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
       </button>
     </div>
     <div id="cart-items" class="cart-items" role="list" aria-label="Cart items">
@@ -523,7 +512,10 @@
       </div>
       <a href="#checkout-section" class="btn btn-primary full-width" id="cart-checkout-btn" role="button">
         Proceed to Checkout
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"
+          height="16">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
       </a>
     </div>
   </aside>
@@ -532,9 +524,13 @@
        PRODUCT QUICK-VIEW MODAL
   ═══════════════════════════════ -->
   <div id="modal-overlay" class="modal-overlay" aria-hidden="true"></div>
-  <div id="product-modal" class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-title" aria-hidden="true">
+  <div id="product-modal" class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-title"
+    aria-hidden="true">
     <button class="modal-close" id="modal-close" aria-label="Close product details">
-      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20"
+        height="20">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
     </button>
     <div class="modal-body">
       <div class="modal-img-wrap">
@@ -550,15 +546,25 @@
         <div class="modal-actions">
           <div class="qty-control" role="group" aria-label="Quantity selector">
             <button class="qty-btn" id="modal-qty-dec" aria-label="Decrease quantity">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14"/></svg>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                width="16" height="16">
+                <path d="M5 12h14" />
+              </svg>
             </button>
             <input type="number" id="modal-qty" class="qty-input" value="1" min="1" max="99" aria-label="Quantity" />
             <button class="qty-btn" id="modal-qty-inc" aria-label="Increase quantity">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                width="16" height="16">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
             </button>
           </div>
           <button class="btn btn-primary" id="modal-add-cart">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"
+              height="18">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
             Add to Cart
           </button>
         </div>
@@ -572,12 +578,26 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="logo">
-            <svg aria-hidden="true" viewBox="0 0 40 40" fill="none" width="36" height="36"><circle cx="20" cy="20" r="20" fill="url(#logoGrad2)"/><path d="M12 28l4-12h8l4 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="13" r="2" fill="#fff"/><defs><linearGradient id="logoGrad2" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs></svg>
+            <svg aria-hidden="true" viewBox="0 0 40 40" fill="none" width="36" height="36">
+              <circle cx="20" cy="20" r="20" fill="url(#logoGrad2)" />
+              <path d="M12 28l4-12h8l4 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <circle cx="20" cy="13" r="2" fill="#fff" />
+              <defs>
+                <linearGradient id="logoGrad2" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#7C3AED" />
+                  <stop offset="1" stop-color="#06B6D4" />
+                </linearGradient>
+              </defs>
+            </svg>
             <span class="logo-text">Access<span class="logo-accent">Shop</span></span>
           </div>
           <p class="footer-tagline">Shopping without barriers.</p>
           <p class="footer-cert">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2L3.5 6.5v5c0 5.55 3.84 10.74 8.5 12 4.66-1.26 8.5-6.45 8.5-12v-5L12 2zm-1 14l-4-4 1.41-1.41L11 13.17l6.59-6.59L19 8l-8 8z"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+              <path
+                d="M12 2L3.5 6.5v5c0 5.55 3.84 10.74 8.5 12 4.66-1.26 8.5-6.45 8.5-12v-5L12 2zm-1 14l-4-4 1.41-1.41L11 13.17l6.59-6.59L19 8l-8 8z" />
+            </svg>
             WCAG 2.1 AA Compliant
           </p>
         </div>
@@ -592,9 +612,8 @@
         <div class="footer-links">
           <h3>Accessibility</h3>
           <ul>
-            <li><a href="#accessibility-toolbar">Settings</a></li>
-            <li><a href="#" id="footer-keyboard-help">Keyboard Shortcuts</a></li>
             <li><a href="#" id="footer-sign-lang">Sign Language Guide</a></li>
+            <li><a href="#" id="footer-keyboard-help">Keyboard Shortcuts</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -609,28 +628,59 @@
       <div class="footer-bottom">
         <p>© 2026 AccessShop. Built with ♿ for everyone.</p>
         <p class="footer-wcag">
-          <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer" aria-label="WCAG 2.1 Guidelines (opens in new tab)">WCAG 2.1 Guidelines ↗</a>
+          <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer"
+            aria-label="WCAG 2.1 Guidelines (opens in new tab)">WCAG 2.1 Guidelines ↗</a>
         </p>
       </div>
     </div>
   </footer>
 
   <!-- Keyboard Shortcut Help Modal -->
-  <div id="keyboard-help-modal" class="product-modal keyboard-help-modal" role="dialog" aria-modal="true" aria-labelledby="kb-modal-title" aria-hidden="true">
+  <div id="keyboard-help-modal" class="product-modal keyboard-help-modal" role="dialog" aria-modal="true"
+    aria-labelledby="kb-modal-title" aria-hidden="true">
     <button class="modal-close" id="kb-modal-close" aria-label="Close keyboard shortcuts">✕</button>
     <div class="kb-modal-body">
       <h2 id="kb-modal-title">⌨️ Keyboard Shortcuts</h2>
       <table class="shortcuts-table" aria-label="Keyboard shortcuts reference">
-        <thead><tr><th scope="col">Key</th><th scope="col">Action</th></tr></thead>
+        <thead>
+          <tr>
+            <th scope="col">Key</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td><kbd>Tab</kbd> / <kbd>Shift+Tab</kbd></td><td>Move between interactive elements</td></tr>
-          <tr><td><kbd>↑ ↓ ← →</kbd></td><td>Navigate the product grid</td></tr>
-          <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Activate focused element</td></tr>
-          <tr><td><kbd>Esc</kbd></td><td>Close modals, cart, dropdowns</td></tr>
-          <tr><td><kbd>/</kbd></td><td>Focus search box</td></tr>
-          <tr><td><kbd>C</kbd></td><td>Open / close cart</td></tr>
-          <tr><td><kbd>A</kbd></td><td>Open accessibility settings</td></tr>
-          <tr><td><kbd>?</kbd></td><td>This shortcuts help</td></tr>
+          <tr>
+            <td><kbd>Tab</kbd> / <kbd>Shift+Tab</kbd></td>
+            <td>Move between interactive elements</td>
+          </tr>
+          <tr>
+            <td><kbd>↑ ↓ ← →</kbd></td>
+            <td>Navigate the product grid</td>
+          </tr>
+          <tr>
+            <td><kbd>Enter</kbd> / <kbd>Space</kbd></td>
+            <td>Activate focused element</td>
+          </tr>
+          <tr>
+            <td><kbd>Esc</kbd></td>
+            <td>Close modals, cart, dropdowns</td>
+          </tr>
+          <tr>
+            <td><kbd>/</kbd></td>
+            <td>Focus search box</td>
+          </tr>
+          <tr>
+            <td><kbd>C</kbd></td>
+            <td>Open / close cart</td>
+          </tr>
+          <tr>
+            <td><kbd>A</kbd></td>
+            <td>Open accessibility settings</td>
+          </tr>
+          <tr>
+            <td><kbd>?</kbd></td>
+            <td>This shortcuts help</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -641,4 +691,5 @@
   <script src="js/checkout.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>
